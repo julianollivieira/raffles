@@ -1,8 +1,20 @@
 import type { AppProps } from "next/app";
 import Head from "next/head";
-import { Global, MantineProvider } from "@mantine/core";
+import {
+  ColorSchemeProvider,
+  Global,
+  MantineProvider,
+  ColorScheme,
+  Box,
+} from "@mantine/core";
+import { useState } from "react";
 
 const App = ({ Component, pageProps }: AppProps) => {
+  const [colorScheme, setColorScheme] = useState<ColorScheme>("light");
+
+  const toggleColorScheme = (value?: ColorScheme) =>
+    setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"));
+
   return (
     <>
       <Head>
@@ -14,20 +26,40 @@ const App = ({ Component, pageProps }: AppProps) => {
       </Head>
       <Global
         styles={() => ({
+          "*": {
+            padding: 0,
+            margin: 0,
+          },
           "@font-face": {
             fontFamily: "Inter",
             src: `url('./fonts/Inter.ttf') format("truetype")`,
           },
         })}
       />
-      <MantineProvider
-        theme={{
-          fontFamily: "Inter",
-          primaryColor: "cyan",
-        }}
+      <ColorSchemeProvider
+        colorScheme={colorScheme}
+        toggleColorScheme={toggleColorScheme}
       >
-        <Component {...pageProps} />
-      </MantineProvider>
+        <MantineProvider
+          theme={{
+            colorScheme,
+            fontFamily: "Inter",
+            primaryColor: "cyan",
+          }}
+        >
+          <Box
+            sx={(theme) => ({
+              minHeight: "100vh",
+              backgroundColor:
+                theme.colorScheme === "light"
+                  ? theme.colors.gray[0]
+                  : theme.colors.dark[9],
+            })}
+          >
+            <Component {...pageProps} />
+          </Box>
+        </MantineProvider>
+      </ColorSchemeProvider>
     </>
   );
 };
