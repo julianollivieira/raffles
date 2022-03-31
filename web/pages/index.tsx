@@ -66,6 +66,9 @@ const Home: NextPage = () => {
             fontWeight: 500,
             width: "75%",
             "@media (max-width: 768px)": {
+              fontSize: 15,
+            },
+            "@media (min-width: 768px) and (max-width: 992px)": {
               fontSize: 20,
             },
           })}
@@ -75,7 +78,16 @@ const Home: NextPage = () => {
           explicabo veritatis eum quidem, facere quasi id! Fugit suscipit
           praesentium culpa?
         </Text>
-        <Button mt={20} size="xl" sx={{ borderRadius: 9999 }}>
+        <Button
+          mt={20}
+          size="xl"
+          sx={{
+            borderRadius: 9999,
+            "@media (max-width: 768px)": {
+              fontSize: 15,
+            },
+          }}
+        >
           Sign up for free!
         </Button>
       </Box>
