@@ -33,8 +33,12 @@ const NavigationBar = (): ReactElement => {
         }}
       >
         <Box sx={{ display: "flex", alignItems: "center", gap: 20 }}>
-          <Text
+          <Link
+            href="/"
             sx={(theme) => ({
+              ":hover": {
+                textDecoration: "none",
+              },
               fontWeight: "bolder",
               fontSize: 23,
               color: dark ? theme.colors.gray[0] : theme.colors.gray[9],
@@ -42,7 +46,7 @@ const NavigationBar = (): ReactElement => {
             mr={20}
           >
             RAFFLES
-          </Text>
+          </Link>
           <MediaQuery smallerThan="sm" styles={{ display: "none" }}>
             <Box sx={{ display: "flex", gap: 20 }}>
               {navItems.map((navItem) => (
@@ -66,19 +70,9 @@ const NavigationBar = (): ReactElement => {
         </Box>
         <MediaQuery smallerThan="sm" styles={{ display: "none" }}>
           <Box sx={{ display: "flex", alignItems: "center", gap: 20 }}>
-            <Link
-              href="/log-in"
-              sx={(theme) => ({
-                color: theme.colors.gray[5],
-                "&:hover": {
-                  textDecoration: "none",
-                  color: theme.colors.gray[6],
-                },
-                fontWeight: "bold",
-              })}
-            >
+            <LinkButton variant="subtle" href="/log-in" color="gray">
               Log in
-            </Link>
+            </LinkButton>
             <LinkButton href="/log-in">Sign up for free</LinkButton>
           </Box>
         </MediaQuery>

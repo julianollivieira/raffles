@@ -36,7 +36,7 @@ const Home: NextPage = () => {
             },
           })}
         >
-          A video messaging tool for
+          Never miss a single
         </Text>
         <Text
           sx={(theme) => ({
@@ -56,7 +56,7 @@ const Home: NextPage = () => {
             },
           })}
         >
-          async conversations
+          sneaker drop
         </Text>
         <Text
           color="gray"
