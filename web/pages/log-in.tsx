@@ -17,15 +17,29 @@ const Home: NextPage = () => {
         }}
       >
         <Paper sx={{ width: "400px" }} p={30} shadow="xs">
-          <Text
-            align="center"
-            sx={{ fontSize: 50 }}
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
             pb={30}
-            weight="bold"
-            color="gray"
           >
-            LOG IN
-          </Text>
+            <Box
+              component="img"
+              src="/imgs/logos/logo.svg"
+              sx={{ width: 100 }}
+              pr={20}
+            />
+            <Text
+              align="center"
+              sx={{ fontSize: 50 }}
+              weight="bold"
+              color="cyan"
+            >
+              LOG IN
+            </Text>
+          </Box>
           <Box sx={{ display: "flex", flexDirection: "column", gap: 10 }}>
             <TextInput placeholder="Your email" label="Email " required />
             <PasswordInputWithRequirements
