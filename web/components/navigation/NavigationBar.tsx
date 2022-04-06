@@ -3,6 +3,7 @@ import {
   Burger,
   Container,
   MediaQuery,
+  Paper,
   Text,
   useMantineColorScheme,
 } from "@mantine/core";
@@ -19,7 +20,7 @@ const NavigationBar = (): ReactElement => {
   const title = opened ? "Close navigation" : "Open navigation";
 
   return (
-    <Box component="nav">
+    <Paper component="nav" shadow="xs">
       <Container
         size="xl"
         py={10}
@@ -42,10 +43,21 @@ const NavigationBar = (): ReactElement => {
               fontWeight: "bolder",
               fontSize: 23,
               color: dark ? theme.colors.gray[0] : theme.colors.gray[9],
+              display: "flex",
+              alignItems: "center",
             })}
             mr={20}
           >
-            RAFFLES
+            <Box
+              component="img"
+              src="/imgs/logos/logo.svg"
+              alt=""
+              sx={{ height: 20 }}
+              mr={5}
+            />
+            <Text weight="bolder" color="cyan">
+              RAFFLES
+            </Text>
           </Link>
           <MediaQuery smallerThan="sm" styles={{ display: "none" }}>
             <Box sx={{ display: "flex", gap: 20 }}>
@@ -53,11 +65,12 @@ const NavigationBar = (): ReactElement => {
                 <Link
                   key={navItem.label}
                   href={navItem.href}
+                  size="sm"
                   sx={(theme) => ({
-                    color: theme.colors.gray[5],
+                    color: theme.colors.gray[6],
                     "&:hover": {
                       textDecoration: "none",
-                      color: theme.colors.gray[6],
+                      color: theme.colors.gray[7],
                     },
                     fontWeight: "bold",
                   })}
@@ -84,7 +97,7 @@ const NavigationBar = (): ReactElement => {
           />
         </MediaQuery>
       </Container>
-    </Box>
+    </Paper>
   );
 };
 

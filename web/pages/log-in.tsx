@@ -1,13 +1,6 @@
 import type { NextPage } from "next";
 import Layout from "@/components/Layout";
-import {
-  Box,
-  Button,
-  Paper,
-  PasswordInput,
-  Text,
-  TextInput,
-} from "@mantine/core";
+import { Box, Button, Paper, Text, TextInput } from "@mantine/core";
 import PasswordInputWithRequirements from "@/components/input/PasswordInputWithRequirements";
 import Link from "@/components/navigation/Link";
 import LinkButton from "@/components/navigation/LinkButton";
@@ -23,11 +16,13 @@ const Home: NextPage = () => {
           height: "calc(100vh - 56px)",
         }}
       >
-        <Paper sx={{ width: "400px" }} p={30}>
+        <Paper sx={{ width: "400px" }} p={30} shadow="xs">
           <Text
             align="center"
-            sx={{ fontSize: 50, fontWeight: "bold" }}
+            sx={{ fontSize: 50 }}
             pb={30}
+            weight="bold"
+            color="gray"
           >
             LOG IN
           </Text>

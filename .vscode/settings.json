@@ -4,7 +4,7 @@
         "web/next-env.d.ts": true,
         "web/.next": true,
     },
-    "[typescript][typescriptreact]": {
+    "[typescript][typescriptreact][html]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode",
         "editor.formatOnSave": true
     }

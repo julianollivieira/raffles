@@ -23,6 +23,7 @@ const App = ({ Component, pageProps }: AppProps) => {
           content="minimum-scale=1, initial-scale=1, width=device-width"
           name="viewport"
         />
+        <link rel="icon" href="/imgs/logos/logo.svg" type="image/svg+xml" />
       </Head>
       <Global
         styles={() => ({
@@ -54,6 +55,12 @@ const App = ({ Component, pageProps }: AppProps) => {
                 theme.colorScheme === "light"
                   ? theme.colors.gray[0]
                   : theme.colors.dark[9],
+              backgroundImage:
+                theme.colorScheme === "light"
+                  ? "url(/imgs/backgrounds/background_light.svg)"
+                  : "url(/imgs/backgrounds/background_dark.svg)",
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "auto 100%",
             })}
           >
             <Component {...pageProps} />

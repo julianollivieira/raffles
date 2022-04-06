@@ -25,7 +25,7 @@ const Layout = ({ children }: Props): ReactElement => {
           },
         }}
       >
-        <main>{children}</main>
+        <Box component="main">{children}</Box>
       </Container>
     </>
   );
