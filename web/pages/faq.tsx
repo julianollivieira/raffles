@@ -36,7 +36,7 @@ const FAQ: NextPage = () => {
         <Paper sx={{ maxWidth: "500px" }} shadow="xs">
           <Accordion sx={{ width: "100%" }}>
             {faqItems.map((faqItem) => (
-              <Accordion.Item label={faqItem.question}>
+              <Accordion.Item label={faqItem.question} key={faqItem.question}>
                 {faqItem.answer}
               </Accordion.Item>
             ))}

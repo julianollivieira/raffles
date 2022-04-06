@@ -59,11 +59,11 @@ const Contact: NextPage = () => {
             }}
           >
             <Text size="sm" color="gray">
-              Don't hesitate to have a look at our{" "}
+              Don&apos;t hesitate to have a look at our{" "}
               <Link href="/faq" size="sm">
                 FAQ
               </Link>
-              , you'll probably find an answer to your question!
+              , you&apos;ll probably find an answer to your question!
             </Text>
             <Button sx={{ fontWeight: "bold" }}>Send</Button>
           </Box>
