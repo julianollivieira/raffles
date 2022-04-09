@@ -103,6 +103,7 @@ const NavigationBar = (): ReactElement => {
                 }}
               >
                 <Box
+                  pt="md"
                   sx={{
                     display: "flex",
                     flexDirection: "column",
