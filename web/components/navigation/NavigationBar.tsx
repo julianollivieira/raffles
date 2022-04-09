@@ -5,7 +5,6 @@ import {
   Divider,
   MediaQuery,
   Paper,
-  Text,
   useMantineColorScheme,
 } from "@mantine/core";
 import { ReactElement, useState } from "react";
@@ -79,7 +78,7 @@ const NavigationBar = (): ReactElement => {
             <LinkButton variant="subtle" href="/log-in" color="gray">
               Log in
             </LinkButton>
-            <LinkButton href="/log-in">Sign up for free</LinkButton>
+            <LinkButton href="/sign-up">Sign up for free</LinkButton>
           </Box>
         </MediaQuery>
         <MediaQuery largerThan="sm" styles={{ display: "none" }}>
@@ -140,7 +139,7 @@ const NavigationBar = (): ReactElement => {
                     >
                       Log in
                     </LinkButton>
-                    <LinkButton href="/log-in" mx={25} mb="sm">
+                    <LinkButton href="/sign-up" mx={25} mb="sm">
                       Sign up for free
                     </LinkButton>
                   </Box>

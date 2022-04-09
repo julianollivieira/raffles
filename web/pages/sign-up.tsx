@@ -8,11 +8,11 @@ import {
   Group,
   Checkbox,
   Text,
-  PasswordInput,
 } from "@mantine/core";
+import PasswordInputWithRequirements from "@/components/input/PasswordInputWithRequirements";
 import Link from "@/components/navigation/Link";
 
-const LogIn: NextPage = () => {
+const SignUp: NextPage = () => {
   return (
     <Layout hideNav hideFooter>
       <Box
@@ -48,12 +48,12 @@ const LogIn: NextPage = () => {
               },
             })}
           >
-            Welcome back!
+            Sign up for free!
           </Text>
           <Text color="dimmed" size="sm" align="center" mt={5}>
-            Do not have an account yet?{" "}
-            <Link href="/sign-up" size="sm" sx={{ fontWeight: "normal" }}>
-              Create account
+            Already have an account?{" "}
+            <Link href="/log-in" size="sm" sx={{ fontWeight: "normal" }}>
+              Log in
             </Link>
           </Text>
           <Paper
@@ -72,20 +72,37 @@ const LogIn: NextPage = () => {
             })}
           >
             <TextInput label="Email" placeholder="Your email" required />
-            <PasswordInput
+            <PasswordInputWithRequirements
               label="Password"
               placeholder="Your password"
               required
               mt="md"
             />
-            <Group position="apart" mt="md">
-              <Checkbox label="Remember me" />
-              <Link href="#" size="sm" sx={{ fontWeight: "normal" }}>
-                Forgot password?
-              </Link>
-            </Group>
+            <Checkbox
+              label={
+                <Text size="sm">
+                  I have read and i accept the{" "}
+                  <Link
+                    href="/terms-and-conditions"
+                    size="sm"
+                    sx={{ fontWeight: "normal" }}
+                  >
+                    general terms and conditions
+                  </Link>{" "}
+                  and the{" "}
+                  <Link
+                    href="/privacy-policy"
+                    size="sm"
+                    sx={{ fontWeight: "normal" }}
+                  >
+                    privacy policy
+                  </Link>
+                </Text>
+              }
+              mt="md"
+            />
             <Button fullWidth mt="xl">
-              Log in
+              Sign up
             </Button>
           </Paper>
           <Box sx={{ display: "flex", justifyContent: "center" }} pt={20}>
@@ -99,4 +116,4 @@ const LogIn: NextPage = () => {
   );
 };
 
-export default LogIn;
+export default SignUp;
