@@ -14,7 +14,7 @@ import Link from "@/components/navigation/Link";
 
 const Home: NextPage = () => {
   return (
-    <Layout>
+    <Layout hideNav hideFooter>
       <Box
         sx={(theme) => ({
           display: "flex",
@@ -88,6 +88,11 @@ const Home: NextPage = () => {
               Sign in
             </Button>
           </Paper>
+          <Box sx={{ display: "flex", justifyContent: "center" }} pt={20}>
+            <Link href="/" size="sm" sx={{ fontWeight: "normal" }}>
+              Back to the home page
+            </Link>
+          </Box>
         </Box>
       </Box>
     </Layout>

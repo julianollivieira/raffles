@@ -8,7 +8,6 @@ import {
   Box,
 } from "@mantine/core";
 import { useState } from "react";
-import Footer from "@/components/navigation/Footer";
 
 const App = ({ Component, pageProps }: AppProps) => {
   const [colorScheme, setColorScheme] = useState<ColorScheme>("light");
@@ -49,24 +48,7 @@ const App = ({ Component, pageProps }: AppProps) => {
             primaryColor: "cyan",
           }}
         >
-          <Box
-            sx={(theme) => ({
-              minHeight: "100vh",
-              backgroundColor:
-                theme.colorScheme === "light"
-                  ? theme.colors.gray[0]
-                  : theme.colors.dark[9],
-              backgroundImage:
-                theme.colorScheme === "light"
-                  ? "url(/imgs/backgrounds/background_light.svg)"
-                  : "url(/imgs/backgrounds/background_dark.svg)",
-              backgroundRepeat: "no-repeat",
-              backgroundSize: "auto 100%",
-            })}
-          >
-            <Component {...pageProps} />
-          </Box>
-          <Footer />
+          <Component {...pageProps} />
         </MantineProvider>
       </ColorSchemeProvider>
     </>

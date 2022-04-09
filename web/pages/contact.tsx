@@ -12,6 +12,7 @@ const Contact: NextPage = () => {
           display: "flex",
           flexDirection: "column",
         }}
+        pb={50}
       >
         <Text
           py={75}
@@ -25,6 +26,8 @@ const Contact: NextPage = () => {
             lineHeight: "90px",
             "@media (max-width: 768px)": {
               fontSize: 30,
+              paddingTop: 10,
+              paddingBottom: 10,
             },
             "@media (min-width: 768px) and (max-width: 1200px)": {
               fontSize: 50,
@@ -56,14 +59,27 @@ const Contact: NextPage = () => {
             minRows={10}
           />
           <Box
-            pt={20}
-            sx={{
+            pt={10}
+            sx={(theme) => ({
               display: "flex",
               justifyContent: "end",
               gap: 50,
-            }}
+              [theme.fn.smallerThan("sm")]: {
+                gap: 10,
+                flexDirection: "column-reverse",
+                textAlign: "center",
+              },
+            })}
           >
-            <Text size="sm" color="gray">
+            <Text
+              size="sm"
+              color="gray"
+              sx={(theme) => ({
+                [theme.fn.smallerThan("sm")]: {
+                  fontSize: theme.fontSizes.xs,
+                },
+              })}
+            >
               Don&apos;t hesitate to have a look at our{" "}
               <Link href="/faq" size="sm">
                 FAQ

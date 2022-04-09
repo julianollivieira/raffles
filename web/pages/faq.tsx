@@ -16,7 +16,7 @@ const FAQ: NextPage = () => {
         <Text
           py={75}
           sx={(theme) => ({
-            fontSize: 80,
+            fontSize: 60,
             fontWeight: "900",
             color:
               theme.colorScheme === "light"
@@ -25,9 +25,13 @@ const FAQ: NextPage = () => {
             lineHeight: "90px",
             "@media (max-width: 768px)": {
               fontSize: 30,
+              lineHeight: "30px",
+              textAlign: "center",
+              paddingTop: 50,
+              paddingBottom: 50,
             },
             "@media (min-width: 768px) and (max-width: 1200px)": {
-              fontSize: 50,
+              fontSize: 42,
             },
           })}
         >
