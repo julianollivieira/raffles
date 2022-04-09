@@ -11,6 +11,7 @@ import { ReactElement, useState } from "react";
 import navItems from "@/utils/navItems";
 import Link from "@/components/navigation/Link";
 import LinkButton from "@/components/navigation/LinkButton";
+import Logo from "@/components/Logo";
 
 const NavigationBar = (): ReactElement => {
   const { colorScheme } = useMantineColorScheme();
@@ -40,7 +41,6 @@ const NavigationBar = (): ReactElement => {
               ":hover": {
                 textDecoration: "none",
               },
-              fontWeight: "bolder",
               fontSize: 23,
               color: dark ? theme.colors.gray[0] : theme.colors.gray[9],
               display: "flex",
@@ -48,16 +48,7 @@ const NavigationBar = (): ReactElement => {
             })}
             mr={20}
           >
-            <Box
-              component="img"
-              src="/imgs/logos/logo.svg"
-              alt=""
-              sx={{ height: 20 }}
-              mr={5}
-            />
-            <Text weight="bolder" color="cyan">
-              RAFFLES
-            </Text>
+            <Logo mr={5} sx={{ height: 20 }} withText />
           </Link>
           <MediaQuery smallerThan="sm" styles={{ display: "none" }}>
             <Box sx={{ display: "flex", gap: 20 }}>

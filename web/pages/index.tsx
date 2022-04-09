@@ -20,7 +20,7 @@ const Home: NextPage = () => {
         <Text
           sx={(theme) => ({
             fontSize: 80,
-            fontWeight: "1000",
+            fontWeight: "900",
             color:
               theme.colorScheme === "light"
                 ? theme.colors.gray[9]
@@ -41,7 +41,7 @@ const Home: NextPage = () => {
         <Text
           sx={(theme) => ({
             fontSize: 80,
-            fontWeight: "1000",
+            fontWeight: "900",
             background: `-webkit-linear-gradient(${theme.colors.teal[5]}, ${theme.colors.cyan[5]})`,
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",

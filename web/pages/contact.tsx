@@ -17,7 +17,7 @@ const Contact: NextPage = () => {
           py={75}
           sx={(theme) => ({
             fontSize: 80,
-            fontWeight: "1000",
+            fontWeight: "900",
             color:
               theme.colorScheme === "light"
                 ? theme.colors.gray[9]
@@ -35,7 +35,7 @@ const Contact: NextPage = () => {
         </Text>
         <Paper
           sx={{
-            maxWidth: "500px",
+            maxWidth: "800px",
             display: "flex",
             flexDirection: "column",
             gap: 10,
@@ -49,7 +49,12 @@ const Contact: NextPage = () => {
             required
             type="email"
           />
-          <Textarea placeholder="Your message" label="Message" required />
+          <Textarea
+            placeholder="Your message"
+            label="Message"
+            required
+            minRows={10}
+          />
           <Box
             pt={20}
             sx={{

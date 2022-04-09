@@ -17,7 +17,7 @@ const FAQ: NextPage = () => {
           py={75}
           sx={(theme) => ({
             fontSize: 80,
-            fontWeight: "1000",
+            fontWeight: "900",
             color:
               theme.colorScheme === "light"
                 ? theme.colors.gray[9]
@@ -33,8 +33,8 @@ const FAQ: NextPage = () => {
         >
           Frequently Asked Questions
         </Text>
-        <Paper sx={{ maxWidth: "500px" }} shadow="xs">
-          <Accordion sx={{ width: "100%" }}>
+        <Paper sx={{ maxWidth: "800px", width: "100%" }} shadow="xs">
+          <Accordion>
             {faqItems.map((faqItem) => (
               <Accordion.Item label={faqItem.question} key={faqItem.question}>
                 {faqItem.answer}

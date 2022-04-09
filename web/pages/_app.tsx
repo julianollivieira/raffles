@@ -8,6 +8,7 @@ import {
   Box,
 } from "@mantine/core";
 import { useState } from "react";
+import Footer from "@/components/navigation/Footer";
 
 const App = ({ Component, pageProps }: AppProps) => {
   const [colorScheme, setColorScheme] = useState<ColorScheme>("light");
@@ -65,6 +66,7 @@ const App = ({ Component, pageProps }: AppProps) => {
           >
             <Component {...pageProps} />
           </Box>
+          <Footer />
         </MantineProvider>
       </ColorSchemeProvider>
     </>
