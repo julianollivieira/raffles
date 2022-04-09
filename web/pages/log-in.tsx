@@ -1,75 +1,94 @@
 import type { NextPage } from "next";
 import Layout from "@/components/Layout";
-import { Box, Button, Paper, Text, TextInput } from "@mantine/core";
+import {
+  Box,
+  Button,
+  Paper,
+  TextInput,
+  Group,
+  Checkbox,
+  Text,
+} from "@mantine/core";
 import PasswordInputWithRequirements from "@/components/input/PasswordInputWithRequirements";
 import Link from "@/components/navigation/Link";
-import LinkButton from "@/components/navigation/LinkButton";
 
 const Home: NextPage = () => {
   return (
     <Layout>
       <Box
-        sx={{
+        sx={(theme) => ({
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
           height: "calc(100vh - 56px)",
-        }}
+          [theme.fn.smallerThan("sm")]: {
+            alignItems: "start",
+            paddingTop: "50px",
+          },
+        })}
       >
-        <Paper sx={{ width: "400px" }} p={30} shadow="xs">
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-            pb={30}
+        <Box
+          sx={(theme) => ({
+            [theme.fn.smallerThan("xs")]: {
+              width: "100%",
+            },
+          })}
+        >
+          <Text
+            align="center"
+            sx={(theme) => ({
+              fontSize: 40,
+              fontWeight: "900",
+              color:
+                theme.colorScheme === "light"
+                  ? theme.colors.gray[9]
+                  : theme.colors.gray[0],
+              "@media (max-width: 768px)": {
+                fontSize: 30,
+              },
+            })}
           >
-            <Box
-              component="img"
-              src="/imgs/logos/logo.svg"
-              sx={{ width: 100 }}
-              pr={20}
-            />
-            <Text
-              align="center"
-              sx={{ fontSize: 50 }}
-              weight="bold"
-              color="cyan"
-            >
-              LOG IN
-            </Text>
-          </Box>
-          <Box sx={{ display: "flex", flexDirection: "column", gap: 10 }}>
-            <TextInput placeholder="Your email" label="Email " required />
-            <PasswordInputWithRequirements
-              placeholder="Your password"
-              label="Password"
-              required
-            />
-            <Link
-              href="/forgot-your-password"
-              color="gray"
-              size="xs"
-              sx={{ fontWeight: "normal", textAlign: "right" }}
-            >
-              Forgot your password?
+            Welcome back!
+          </Text>
+          <Text color="dimmed" size="sm" align="center" mt={5}>
+            Do not have an account yet?{" "}
+            <Link href="#" size="sm" sx={{ fontWeight: "normal" }}>
+              Create account
             </Link>
-            <Box
-              pt={30}
-              sx={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}
-            >
-              <LinkButton variant="subtle" href="/sign-up" color="gray">
-                Sign up instead
-              </LinkButton>
-              <Button sx={{ fontWeight: "bold" }}>Log in</Button>
-            </Box>
-          </Box>
-        </Paper>
+          </Text>
+          <Paper
+            withBorder
+            shadow="md"
+            p={30}
+            mt={30}
+            radius="md"
+            sx={(theme) => ({
+              width: "100%",
+              display: "flex",
+              flexDirection: "column",
+              [theme.fn.largerThan("xs")]: {
+                width: "400px",
+              },
+            })}
+          >
+            <TextInput label="Email" placeholder="Your email" required />
+            <PasswordInputWithRequirements
+              label="Password"
+              placeholder="Your password"
+              required
+              mt="md"
+            />
+            <Group position="apart" mt="md">
+              <Checkbox label="Remember me" />
+              <Link href="#" size="sm" sx={{ fontWeight: "normal" }}>
+                Forgot password?
+              </Link>
+            </Group>
+            <Button fullWidth mt="xl">
+              Sign in
+            </Button>
+          </Paper>
+        </Box>
       </Box>
     </Layout>
   );

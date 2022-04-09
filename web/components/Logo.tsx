@@ -13,7 +13,7 @@ const Logo = ({ withText = false, ...props }: Props): ReactElement => {
         src="/imgs/logos/logo.svg"
         alt="Raffle logo"
         sx={{ height: 20 }}
-        mr={5}
+        mr={withText ? 5 : 0}
         {...props}
       />
       {withText && (
