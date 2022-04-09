@@ -2,6 +2,7 @@ import {
   Box,
   Burger,
   Container,
+  Divider,
   MediaQuery,
   Paper,
   Text,
@@ -12,6 +13,7 @@ import navItems from "@/utils/navItems";
 import Link from "@/components/navigation/Link";
 import LinkButton from "@/components/navigation/LinkButton";
 import Logo from "@/components/Logo";
+import ColorSchemeToggle from "@/components/input/ColorSchemeToggle";
 
 const NavigationBar = (): ReactElement => {
   const { colorScheme } = useMantineColorScheme();
@@ -88,6 +90,66 @@ const NavigationBar = (): ReactElement => {
           />
         </MediaQuery>
       </Container>
+      <MediaQuery largerThan="sm" styles={{ display: "none" }}>
+        <Box>
+          {opened && (
+            <Box sx={{ height: "calc(100vh - 56px)" }}>
+              <Box
+                sx={{
+                  display: "flex",
+                  height: "100%",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                }}
+              >
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                  }}
+                >
+                  {navItems.map((navItem) => (
+                    <Link
+                      py={12}
+                      px={25}
+                      key={navItem.label}
+                      href={navItem.href}
+                      size="sm"
+                      sx={(theme) => ({
+                        color: theme.colors.gray[6],
+                        "&:hover": {
+                          textDecoration: "none",
+                          color: theme.colors.gray[7],
+                        },
+                        fontWeight: "bold",
+                      })}
+                    >
+                      {navItem.label}
+                    </Link>
+                  ))}
+                  <Divider my="xl" mx="lg" />
+                  <Box
+                    sx={{ display: "flex", flexDirection: "column-reverse" }}
+                  >
+                    <LinkButton
+                      variant="subtle"
+                      href="/log-in"
+                      color="gray"
+                      mx={25}
+                    >
+                      Log in
+                    </LinkButton>
+                    <LinkButton href="/log-in" mx={25} mb="sm">
+                      Sign up for free
+                    </LinkButton>
+                  </Box>
+                </Box>
+                <ColorSchemeToggle segmented mb="sm" />
+              </Box>
+            </Box>
+          )}
+        </Box>
+      </MediaQuery>
     </Paper>
   );
 };
