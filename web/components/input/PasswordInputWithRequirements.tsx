@@ -11,6 +11,7 @@ import {
 } from "@mantine/core";
 
 const PasswordInputWithRequirements = ({
+  onChange,
   ...props
 }: PasswordInputProps): ReactElement => {
   const [popoverOpened, setPopoverOpened] = useState(false);
@@ -37,10 +38,14 @@ const PasswordInputWithRequirements = ({
       transition="pop-top-left"
       onFocusCapture={() => setPopoverOpened(true)}
       onBlurCapture={() => setPopoverOpened(false)}
+      sx={{ width: "100%" }}
       target={
         <PasswordInput
           {...props}
-          onChange={(event) => setValue(event.currentTarget.value)}
+          onChange={(event) => {
+            onChange?.(event);
+            setValue(event.currentTarget.value);
+          }}
         />
       }
     >
@@ -51,8 +56,8 @@ const PasswordInputWithRequirements = ({
         style={{ marginBottom: 10 }}
       />
       <PasswordRequirement
-        label="Includes at least 6 characters"
-        meets={value.length > 5}
+        label="Includes at least 8 characters"
+        meets={value.length > 7}
       />
       {checks}
     </Popover>
@@ -86,7 +91,7 @@ const requirements = [
 ];
 
 const getStrength = (password: string) => {
-  let multiplier = password.length > 5 ? 0 : 1;
+  let multiplier = password.length > 7 ? 0 : 1;
 
   requirements.forEach((requirement) => {
     if (!requirement.re.test(password)) {

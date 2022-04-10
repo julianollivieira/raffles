@@ -8,7 +8,7 @@ import {
   useMantineColorScheme,
 } from "@mantine/core";
 import { ReactElement, useState } from "react";
-import navItems from "@/utils/navItems";
+import navItems from "@/utils/items/navItems";
 import Link from "@/components/navigation/Link";
 import LinkButton from "@/components/navigation/LinkButton";
 import Logo from "@/components/Logo";

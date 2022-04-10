@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import Layout from "@/components/Layout";
 import { Accordion, Box, Paper, Text } from "@mantine/core";
-import faqItems from "@/utils/faqItems";
+import faqItems from "@/utils/items/faqItems";
 
 const FAQ: NextPage = () => {
   return (

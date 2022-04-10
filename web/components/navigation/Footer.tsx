@@ -3,13 +3,9 @@ import { Box } from "@mantine/core";
 import { Text, Container, ActionIcon, Group, Paper } from "@mantine/core";
 import { BrandTwitter, BrandYoutube, BrandInstagram } from "tabler-icons-react";
 import Logo from "@/components/Logo";
-import footerItems from "@/utils/footerItems";
+import footerItems from "@/utils/items/footerItems";
 
-interface Props {
-  //
-}
-
-const Footer = ({}: Props): ReactElement => {
+const Footer = (): ReactElement => {
   return (
     <Paper
       component="footer"

@@ -11,8 +11,21 @@ import {
   PasswordInput,
 } from "@mantine/core";
 import Link from "@/components/navigation/Link";
+import { useFormik } from "formik";
+import { loginValidationSchema } from "@/utils/validationSchemas";
 
 const LogIn: NextPage = () => {
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    validationSchema: loginValidationSchema,
+    onSubmit: (values) => {
+      console.log(values);
+    },
+  });
+
   return (
     <Layout hideNav hideFooter>
       <Box
@@ -71,22 +84,36 @@ const LogIn: NextPage = () => {
               },
             })}
           >
-            <TextInput label="Email" placeholder="Your email" required />
-            <PasswordInput
-              label="Password"
-              placeholder="Your password"
-              required
-              mt="md"
-            />
-            <Group position="apart" mt="md">
-              <Checkbox label="Remember me" />
-              <Link href="#" size="sm" sx={{ fontWeight: "normal" }}>
-                Forgot password?
-              </Link>
-            </Group>
-            <Button fullWidth mt="xl">
-              Log in
-            </Button>
+            <Box component="form" onSubmit={formik.handleSubmit}>
+              <TextInput
+                label="Email"
+                placeholder="Your email"
+                required
+                name="email"
+                value={formik.values.email}
+                error={formik.touched.email && formik.errors.email}
+                onChange={formik.handleChange}
+              />
+              <PasswordInput
+                label="Password"
+                placeholder="Your password"
+                required
+                mt="md"
+                name="password"
+                value={formik.values.password}
+                error={formik.touched.password && formik.errors.password}
+                onChange={formik.handleChange}
+              />
+              <Group position="apart" mt="md">
+                <Checkbox label="Remember me" />
+                <Link href="#" size="sm" sx={{ fontWeight: "normal" }}>
+                  Forgot password?
+                </Link>
+              </Group>
+              <Button fullWidth mt="xl" type="submit">
+                Log in
+              </Button>
+            </Box>
           </Paper>
           <Box sx={{ display: "flex", justifyContent: "center" }} pt={20}>
             <Link href="/" size="sm" sx={{ fontWeight: "normal" }}>
