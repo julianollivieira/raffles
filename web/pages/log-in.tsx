@@ -70,8 +70,7 @@ const LogIn: NextPage = () => {
             </Link>
           </Text>
           <Paper
-            withBorder
-            shadow="md"
+            shadow="xs"
             p={30}
             mt={30}
             radius="md"
