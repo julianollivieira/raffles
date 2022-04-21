@@ -2,6 +2,8 @@ import type { NextPage } from "next";
 import Layout from "@/components/Layout";
 import { Box, Grid, MediaQuery, Paper } from "@mantine/core";
 import SneakerCard from "@/components/raffles/SneakerCard";
+import Link from "@/components/navigation/Link";
+import LinkButton from "@/components/navigation/LinkButton";
 
 const Raffles: NextPage = () => {
   return (
@@ -9,11 +11,28 @@ const Raffles: NextPage = () => {
       <Box sx={{ display: "flex", gap: 24 }} py="xl">
         <MediaQuery smallerThan="sm" styles={{ display: "none" }}>
           <Paper
-            p={5}
             sx={{ width: "250px", height: "min-content" }}
+            py={10}
             shadow="xs"
           >
-            <p>test2</p>
+            <LinkButton
+              href="/raffles/upcoming"
+              variant="subtle"
+              color="gray"
+              py={3}
+              sx={{ width: "90%", display: "flex" }}
+            >
+              Upcoming
+            </LinkButton>
+            <LinkButton
+              href="/raffles/upcoming"
+              variant="subtle"
+              color="gray"
+              py={3}
+              sx={{ width: "90%", display: "flex" }}
+            >
+              Recent
+            </LinkButton>
           </Paper>
         </MediaQuery>
         <Box

@@ -32,7 +32,6 @@ const SneakerCard = ({ image }: Props): ReactElement => {
     >
       <Card.Section
         sx={(theme) => ({
-          padding: theme.spacing.md,
           display: "flex",
           alignItems: "center",
           justifyContent: "center",

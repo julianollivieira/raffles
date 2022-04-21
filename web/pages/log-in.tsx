@@ -9,12 +9,16 @@ import {
   Checkbox,
   Text,
   PasswordInput,
+  LoadingOverlay,
 } from "@mantine/core";
 import Link from "@/components/navigation/Link";
 import { useFormik } from "formik";
 import { loginValidationSchema } from "@/utils/validationSchemas";
+import { useState } from "react";
 
 const LogIn: NextPage = () => {
+  const [isLoading, setIsLoading] = useState(false);
+
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -22,7 +26,11 @@ const LogIn: NextPage = () => {
     },
     validationSchema: loginValidationSchema,
     onSubmit: (values) => {
-      console.log(values);
+      setIsLoading(true);
+      setTimeout(() => {
+        setIsLoading(false);
+        console.log(values);
+      }, 1000);
     },
   });
 
@@ -81,8 +89,10 @@ const LogIn: NextPage = () => {
               [theme.fn.largerThan("xs")]: {
                 width: "450px",
               },
+              position: "relative",
             })}
           >
+            <LoadingOverlay visible={isLoading} />
             <Box component="form" onSubmit={formik.handleSubmit}>
               <TextInput
                 label="Email"
