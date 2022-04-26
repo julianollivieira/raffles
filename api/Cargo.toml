@@ -1,0 +1,22 @@
+[package]
+name = "api"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+# Core dependencies
+tokio = { version = "1.17.0", features = ["macros", "rt-multi-thread"] }
+sqlx = { version = "0.5.13", features = [ "runtime-tokio-rustls", "postgres", "uuid", "time" ] }
+serde = { version = "1.0.136", features = ["derive"] }
+axum = { version = "0.5.3", features = ["tower-log"] }
+
+# Axum builds on the types in tower
+tower = "0.4.12"
+tower-http = { version = "0.3.0", features = ["trace", "cors"] }
+
+# Utility crates
+anyhow = "1.0.57"
+dotenv = "0.15.0"
+envy = "0.4.2"
+log = "0.4.16"
+env_logger = "0.9.0"

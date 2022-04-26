@@ -3,9 +3,15 @@
         "web/node_modules": true,
         "web/next-env.d.ts": true,
         "web/.next": true,
+        "api/target": true,
+        "api/Cargo.lock": true,
     },
     "[typescript][typescriptreact][html]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode",
         "editor.formatOnSave": true
-    }
+    },
+    "[rust]": {
+        "editor.defaultFormatter": "matklad.rust-analyzer",
+        "editor.formatOnSave": true
+    },
 }
