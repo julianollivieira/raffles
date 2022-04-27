@@ -4,7 +4,8 @@ WORKDIR /home/apps
 # Install some required packages
 RUN apt-get update
 RUN apt-get -y install curl
-RUN apt-get -y install build-essential curl
+# ???
+RUN apt-get -y install build-essential curl git
 
 
 # Install Node.js and Yarn
@@ -16,6 +17,7 @@ RUN npm install --global yarn
 RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
 ENV PATH="/root/.cargo/bin:${PATH}"
 RUN cargo install cargo-watch
+RUN cargo install sqlx-cli --no-default-features --features rustls,postgres
 
 # Install Node.js dependencies and run the web server
 WORKDIR /home/apps/web

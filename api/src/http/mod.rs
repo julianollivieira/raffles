@@ -8,6 +8,7 @@ use tower::ServiceBuilder;
 use tower_http::{cors::CorsLayer, trace::TraceLayer};
 
 mod controllers;
+mod models;
 
 #[derive(Clone)]
 struct ApiContext {
