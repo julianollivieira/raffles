@@ -11,7 +11,7 @@ mod controllers;
 mod models;
 
 #[derive(Clone)]
-struct ApiContext {
+pub struct ApiContext {
     config: Arc<Config>,
     pool: PgPool,
 }

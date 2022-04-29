@@ -11,16 +11,10 @@ async fn main() -> Result<()> {
     // Initialize the logger.
     env_logger::init();
 
-    // First we create a connection uri to connect to the database.
-    let connection_uri = format!(
-        "postgres://{}:{}@db:{}/{}",
-        config.pg_user, config.pg_password, config.pg_port, config.pg_database
-    );
-
     // Then we create a connection pool for SQLx that's shared across the whole application.
     let pool = PgPoolOptions::new()
         .max_connections(config.pg_max_connections)
-        .connect(&connection_uri)
+        .connect(&config.database_url)
         .await
         .context("Failed to connect to the database")?;
 
