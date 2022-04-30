@@ -1,5 +1,6 @@
 use axum::{routing::post, Extension, Json, Router};
 use serde::{Deserialize, Serialize};
+use sqlx::Error;
 
 use crate::http::models::User;
 use crate::http::ApiContext;
@@ -8,6 +9,18 @@ use crate::http::ApiContext;
 #[derive(Serialize, Deserialize)]
 struct UserBody<T> {
     user: T,
+}
+
+#[derive(Deserialize)]
+struct CreateAccountRequest {
+    email: String,
+    password: String,
+}
+
+#[derive(Deserialize)]
+struct SignInRequest {
+    email: String,
+    password: String,
 }
 
 pub fn router() -> Router {
@@ -22,29 +35,33 @@ async fn create_account(
     ctx: Extension<ApiContext>,
     Json(req): Json<CreateAccountRequest>,
 ) -> Json<UserBody<User>> {
-    let new_user = User::new(ctx, req.email, req.password).await;
-    Json(UserBody {
-        user: new_user.unwrap(),
-    })
+    let result = User::new(ctx, req.email, req.password).await;
+    match result {
+        Ok(user) => Json(UserBody { user }),
+        Err(error) => match error {
+            Error::Database(dbe) => {
+                println!("dbe: {:?}", dbe);
+                todo!();
+            }
+            _ => todo!(),
+        },
+    }
 }
 
 async fn sign_in(
     ctx: Extension<ApiContext>,
     Json(req): Json<SignInRequest>,
-) -> Json<UserBody<String>> {
-    Json(UserBody {
-        user: "signin".to_string(),
-    })
-}
-
-#[derive(Deserialize)]
-struct CreateAccountRequest {
-    email: String,
-    password: String,
-}
-
-#[derive(Deserialize)]
-struct SignInRequest {
-    email: String,
-    password: String,
+) -> Json<UserBody<User>> {
+    let result = User::get_by_email(ctx, req.email).await;
+    match result {
+        Ok(user) => Json(UserBody { user }),
+        Err(error) => match error {
+            Error::Database(dbe) => {
+                // println!("DBE!! :) == {:?}", dbe);
+                println!("constraint: {:?}", dbe.constraint());
+                todo!();
+            }
+            _ => todo!(),
+        },
+    }
 }

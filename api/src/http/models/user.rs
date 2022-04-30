@@ -17,15 +17,26 @@ pub struct User {
 }
 
 impl User {
-    pub async fn new(ctx: Extension<ApiContext>, email: String, password: String) -> Result<User> {
-        let (hash, salt) = hash_password(password).await?;
-        let new_user = sqlx::query_as!(User,
+    pub async fn new(
+        ctx: Extension<ApiContext>,
+        email: String,
+        password: String,
+    ) -> Result<User, sqlx::Error> {
+        let (hash, salt) = hash_password(password).await.unwrap();
+        sqlx::query_as!(User,
             "INSERT INTO users (email, password_hash, password_salt) VALUES ($1, $2, $3) RETURNING *",
             email,
             hash,
             salt.as_bytes()
-        ).fetch_one(&ctx.pool).await?;
-        Ok(new_user)
+        ).fetch_one(&ctx.pool).await
+    }
+    pub async fn get_by_email(
+        ctx: Extension<ApiContext>,
+        email: String,
+    ) -> Result<User, sqlx::Error> {
+        sqlx::query_as!(User, "SELECT * FROM users WHERE email = $1", email)
+            .fetch_one(&ctx.pool)
+            .await
     }
 }
 
