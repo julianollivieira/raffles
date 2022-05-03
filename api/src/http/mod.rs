@@ -10,6 +10,8 @@ use tower_http::{cors::CorsLayer, trace::TraceLayer};
 mod controllers;
 mod models;
 
+pub mod error;
+
 #[derive(Clone)]
 pub struct ApiContext {
     config: Arc<Config>,
