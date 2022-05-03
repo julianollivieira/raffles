@@ -34,18 +34,67 @@ pub fn router() -> Router {
 async fn create_account(
     ctx: Extension<ApiContext>,
     Json(req): Json<CreateAccountRequest>,
-) -> Json<UserBody<User>> {
+) -> Result<Json<UserBody<User>>, Error> {
     let result = User::new(ctx, req.email, req.password).await;
-    match result {
+    Ok(match result {
         Ok(user) => Json(UserBody { user }),
-        Err(error) => match error {
-            Error::Database(dbe) => {
-                println!("dbe: {:?}", dbe);
-                todo!();
-            }
+        Err(e) => match e {
+            Error::Database(dbe) => match dbe.code().unwrap().as_ref() {
+                "23505" => Err((404, "tst_errr".to_string())),
+                _ => todo!(),
+            },
             _ => todo!(),
         },
-    }
+    })
+
+    // match result {
+    //     Ok(user) => Json(UserBody { user }),
+    //     Err(error) => match error {
+    //         Error::Database(database_error) => {
+    //             if database_error.code().unwrap().as_ref() == "23505" {
+    //                 //
+    //             };
+    //             todo!()
+    //             // if database_error.code().as_ref() == "23505" {
+    //             //     //
+    //             // }
+    //             //     //
+    //             // }
+    //         }
+    //         _ => todo!(),
+    //     },
+    //     _ => todo!(),
+    // }
+    // match result {
+    //     Ok(user) => Json(UserBody { user }),
+    //     Error(error) =>
+    // }
+
+    // result.on_database_error("23505", |e| {
+    //     //
+    // });
+
+    // match result {
+    //     Ok(user) => Json(UserBody { user }),
+    //     Err(error) => match error {
+    //         Error::Database(dbe) => {
+    //             let a = dbe.code().unwrap();
+    //             let b = a.as_ref();
+    //             match b {
+    //                 "23505" => match dbe.constraint() {
+    //                     Some("users_email_key") => {
+    //                         println!("USER WITH EMAIL ALREADY EXISTS");
+    //                     }
+    //                     _ => todo!(),
+    //                 },
+    //                 _ => todo!(),
+    //             };
+    //             println!("dbe: {:?}", dbe);
+    //             todo!();
+    //         }
+    //         _ => todo!(),
+    //     },
+    // }
 }
 
 async fn sign_in(
