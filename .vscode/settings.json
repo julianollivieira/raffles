@@ -3,8 +3,7 @@
         "web/node_modules": true,
         "web/next-env.d.ts": true,
         "web/.next": true,
-        "api/target": true,
-        "api/Cargo.lock": true,
+        "api/vendor": true,
     },
     "[typescript][typescriptreact][html]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode",

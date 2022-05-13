@@ -5,6 +5,7 @@
         "matklad.rust-analyzer",
         "tamasfe.even-better-toml",
         "serayuzgur.crates",
-        "IronGeek.vscode-env"
+        "IronGeek.vscode-env",
+        "ms-python.python"
     ]
 }
