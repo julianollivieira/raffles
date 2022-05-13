@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model as EloquentModel;
+use App\Traits\Uuids;
 
 class Model extends EloquentModel
 {
-    use HasFactory;
+    use Uuids;
 }
