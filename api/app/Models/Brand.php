@@ -17,4 +17,12 @@ class Brand extends Model
     protected $fillable = [
         'name',
     ];
+
+    /**
+     * Get the sneakers with this brand.
+     */
+    public function sneakers()
+    {
+        return $this->hasMany(Sneaker::class);
+    }
 }

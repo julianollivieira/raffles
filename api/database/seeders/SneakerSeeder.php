@@ -7,6 +7,7 @@ use Illuminate\Database\Seeder;
 use App\Models\Brand;
 use App\Models\Model;
 use App\Models\Colorway;
+use App\Models\Sneaker;
 
 class SneakerSeeder extends Seeder
 {

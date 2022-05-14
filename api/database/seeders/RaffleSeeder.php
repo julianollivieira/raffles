@@ -4,6 +4,10 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Store;
+use App\Models\Sneaker;
+use App\Models\Raffle;
+use Carbon\Carbon;
 
 class RaffleSeeder extends Seeder
 {
@@ -27,23 +31,23 @@ class RaffleSeeder extends Seeder
         $raffles = [[
             'store_id' => $naked->id,
             'sneaker_id' => $zebra->id,
-            'closes_on' => '', // TODO: ?
+            'closes_on' => Carbon::now()->addWeeks(1),
         ], [
             'store_id' => $afew->id,
             'sneaker_id' => $waveRunner->id,
-            'closes_on' => '', // TODO: ? 
+            'closes_on' => Carbon::now()->addWeeks(1),
         ], [
             'store_id' => $stress->id,
             'sneaker_id' => $unionGuavaIce->id,
-            'closes_on' => '', // TODO: ?
+            'closes_on' => Carbon::now()->addWeeks(1),
         ], [
             'store_id' => $titolo->id,
             'sneaker_id' => $offWhiteSail->id,
-            'closes_on' => '', // TODO: ?
+            'closes_on' => Carbon::now()->addWeeks(1),
         ]];
 
         foreach($raffles as $raffle) {
-            Store::create(['name' => $raffle]);
+            Raffle::create( $raffle);
         }
     }
 }
