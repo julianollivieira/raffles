@@ -15,9 +15,11 @@ import Link from "@/components/navigation/Link";
 import { useFormik } from "formik";
 import { signupValidationSchema } from "@/utils/validationSchemas";
 import { useState } from "react";
+import { useAuth } from "@/context/authContext";
 
 const SignUp: NextPage = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const { signUp } = useAuth();
 
   const formik = useFormik({
     initialValues: {
@@ -27,12 +29,19 @@ const SignUp: NextPage = () => {
       termsConditionsAndPolicy: false,
     },
     validationSchema: signupValidationSchema,
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
       setIsLoading(true);
-      setTimeout(() => {
-        setIsLoading(false);
-        console.log(values);
-      }, 1000);
+      try {
+        await signUp(
+          values.name,
+          values.email,
+          values.password,
+          values.termsConditionsAndPolicy
+        );
+      } catch (e) {
+        console.error(e);
+      }
+      setIsLoading(false);
     },
   });
 

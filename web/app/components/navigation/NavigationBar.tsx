@@ -1,9 +1,11 @@
 import {
   Box,
   Burger,
+  Button,
   Container,
   Divider,
   MediaQuery,
+  Menu,
   Paper,
   useMantineColorScheme,
 } from "@mantine/core";
@@ -13,6 +15,8 @@ import Link from "@/components/navigation/Link";
 import LinkButton from "@/components/navigation/LinkButton";
 import Logo from "@/components/Logo";
 import ColorSchemeToggle from "@/components/input/ColorSchemeToggle";
+import { useAuth } from "@/context/authContext";
+import { Logout, Settings, User, UserCircle } from "tabler-icons-react";
 
 const NavigationBar = (): ReactElement => {
   const { colorScheme } = useMantineColorScheme();
@@ -20,6 +24,8 @@ const NavigationBar = (): ReactElement => {
 
   const [opened, setOpened] = useState(false);
   const title = opened ? "Close navigation" : "Open navigation";
+
+  const { user } = useAuth();
 
   return (
     <Paper component="nav" shadow="xs">
@@ -75,10 +81,29 @@ const NavigationBar = (): ReactElement => {
         </Box>
         <MediaQuery smallerThan="sm" styles={{ display: "none" }}>
           <Box sx={{ display: "flex", alignItems: "center", gap: 20 }}>
-            <LinkButton variant="subtle" href="/log-in" color="gray">
-              Log in
-            </LinkButton>
-            <LinkButton href="/sign-up">Sign up for free</LinkButton>
+            {user === null ? (
+              <>
+                <LinkButton variant="subtle" href="/log-in" color="gray">
+                  Log in
+                </LinkButton>
+                <LinkButton href="/sign-up">Sign up for free</LinkButton>
+              </>
+            ) : (
+              <Menu
+                control={
+                  <Button>
+                    <User style={{ marginRight: 10 }} size={22} />
+                    {user.name}
+                  </Button>
+                }
+              >
+                <Menu.Item icon={<Settings size={14} />}>Account</Menu.Item>
+                <Divider />
+                <Menu.Item color="red" icon={<Logout size={14} />}>
+                  Log out
+                </Menu.Item>
+              </Menu>
+            )}
           </Box>
         </MediaQuery>
         <MediaQuery largerThan="sm" styles={{ display: "none" }}>

@@ -11,7 +11,12 @@ interface Context {
   user: User | null;
   accessToken: AccessToken | null;
   logIn: (email: string, password: string) => Promise<void>;
-  signUp: (name: string, email: string, password: string) => Promise<void>;
+  signUp: (
+    name: string,
+    email: string,
+    password: string,
+    terms: boolean
+  ) => Promise<void>;
 }
 
 const AuthContext = createContext<Context>({
@@ -47,20 +52,12 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
     setAccessToken(data);
   };
 
-  const getUser = async () => {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/me`, {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${accessToken?.access_token}`,
-      },
-    });
-    const data = await response.json();
-    if (response.status !== 200) throw data;
-
-    setUser(data);
-  };
-
-  const signUp = async (name: string, email: string, password: string) => {
+  const signUp = async (
+    name: string,
+    email: string,
+    password: string,
+    terms: boolean
+  ) => {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/api/sign-up`,
       {
@@ -72,6 +69,7 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
           name,
           email,
           password,
+          terms,
         }),
       }
     );
@@ -79,6 +77,19 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
     if (response.status !== 200) throw data;
 
     console.log("signUp response data:", data);
+  };
+
+  const getUser = async () => {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/me`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${accessToken?.access_token}`,
+      },
+    });
+    const data = await response.json();
+    if (response.status !== 200) throw data;
+
+    setUser(data);
   };
 
   useEffect(() => {
