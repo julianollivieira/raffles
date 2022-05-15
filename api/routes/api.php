@@ -20,8 +20,8 @@ use App\Http\Controllers\AuthController;
 // });
 
 // Authentication & authorization
-Route::post('/sign-in', [AuthController::class, 'signIn'])->name('signIn');
-Route::post('/create-account', [AuthController::class, 'createAccount'])->name('createAccount');
-Route::post('/sign-out', [AuthController::class, 'signOut'])->name('signOut');
+Route::post('/log-in', [AuthController::class, 'logIn'])->name('logIn');
+Route::post('/sign-up', [AuthController::class, 'signUp'])->name('signUp');
+Route::post('/log-out', [AuthController::class, 'logOut'])->name('logOut');
 Route::post('/refresh', [AuthController::class, 'refresh'])->name('refresh');
-Route::post('/me', [AuthController::class, 'me'])->name('me');
+Route::get('/me', [AuthController::class, 'me'])->name('me');

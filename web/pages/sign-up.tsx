@@ -21,6 +21,7 @@ const SignUp: NextPage = () => {
 
   const formik = useFormik({
     initialValues: {
+      name: "",
       email: "",
       password: "",
       termsConditionsAndPolicy: false,
@@ -96,9 +97,19 @@ const SignUp: NextPage = () => {
             <LoadingOverlay visible={isLoading} />
             <Box component="form" onSubmit={formik.handleSubmit}>
               <TextInput
+                label="Name"
+                placeholder="Your name"
+                required
+                name="name"
+                value={formik.values.name}
+                error={formik.touched.name && formik.errors.name}
+                onChange={formik.handleChange}
+              />
+              <TextInput
                 label="Email"
                 placeholder="Your email"
                 required
+                mt="md"
                 name="email"
                 value={formik.values.email}
                 error={formik.touched.email && formik.errors.email}

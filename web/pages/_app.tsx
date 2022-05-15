@@ -8,6 +8,7 @@ import {
   Box,
 } from "@mantine/core";
 import { useState } from "react";
+import { AuthProvider } from "@/context/authContext";
 
 const App = ({ Component, pageProps }: AppProps) => {
   const [colorScheme, setColorScheme] = useState<ColorScheme>("light");
@@ -48,7 +49,9 @@ const App = ({ Component, pageProps }: AppProps) => {
             primaryColor: "cyan",
           }}
         >
-          <Component {...pageProps} />
+          <AuthProvider>
+            <Component {...pageProps} />
+          </AuthProvider>
         </MantineProvider>
       </ColorSchemeProvider>
     </>

@@ -15,9 +15,11 @@ import Link from "@/components/navigation/Link";
 import { useFormik } from "formik";
 import { loginValidationSchema } from "@/utils/validationSchemas";
 import { useState } from "react";
+import { useAuth } from "@/context/authContext";
 
 const LogIn: NextPage = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const { logIn } = useAuth();
 
   const formik = useFormik({
     initialValues: {
@@ -25,12 +27,14 @@ const LogIn: NextPage = () => {
       password: "",
     },
     validationSchema: loginValidationSchema,
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
       setIsLoading(true);
-      setTimeout(() => {
-        setIsLoading(false);
-        console.log(values);
-      }, 1000);
+      try {
+        await logIn(values.email, values.password);
+      } catch (e) {
+        console.error(e);
+      }
+      setIsLoading(false);
     },
   });
 

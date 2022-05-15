@@ -9,6 +9,7 @@ export const loginValidationSchema = yup.object().shape({
 });
 
 export const signupValidationSchema = yup.object().shape({
+  name: yup.string().required("Name is required"),
   email: yup
     .string()
     .required("Email is required")

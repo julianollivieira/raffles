@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
-use App\Http\Requests\SignInRequest;
-use App\Http\Requests\CreateAccountRequest;
+use App\Http\Requests\LogInRequest;
+use App\Http\Requests\SignUpRequest;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 
@@ -18,15 +18,15 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['signIn', 'createAccount']]);
+        $this->middleware('auth:api', ['except' => ['logIn', 'signUp']]);
     }
 
     /**
-     * Sign the user in (create a new JWT).
+     * Log the user in (create a new JWT).
      *
      * @return JsonResponse
      */
-    public function signIn(SignInRequest $request)
+    public function logIn(LogInRequest $request)
     {
         $validated = $request->validated();
 
@@ -38,11 +38,11 @@ class AuthController extends Controller
     }
 
     /**
-     * Create an account.
+     * Sign the user up.
      *
      * @return JsonResponse
      */
-    public function createAccount(CreateAccountRequest $request)
+    public function signUp(SignUpRequest $request)
     {
         $validated = $request->validated();
 
@@ -54,15 +54,15 @@ class AuthController extends Controller
     }
 
     /**
-     * Sign the user out (by invalidating the token).
+     * Log the user out (by invalidating the token).
      *
      * @return JsonResponse
      */
-    public function signOut()
+    public function logOut()
     {
         auth()->logout();
 
-        return response()->json(['message' => 'Succesfully signed out']);
+        return response()->json(['message' => 'Succesfully logged out']);
     }
 
     /**
