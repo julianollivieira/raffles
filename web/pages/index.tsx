@@ -4,7 +4,7 @@ import { Box, Button, Text } from "@mantine/core";
 
 const Home: NextPage = () => {
   return (
-    <Layout>
+    <Layout skipSpinner>
       <Box
         sx={{
           display: "flex",
@@ -61,7 +61,7 @@ const Home: NextPage = () => {
         <Text
           color="gray"
           pt={20}
-          sx={(theme) => ({
+          sx={{
             fontSize: 25,
             fontWeight: 500,
             width: "75%",
@@ -71,7 +71,7 @@ const Home: NextPage = () => {
             "@media (min-width: 768px) and (max-width: 992px)": {
               fontSize: 20,
             },
-          })}
+          }}
         >
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi facilis
           iste minus vitae enim sapiente consequatur fugiat blanditiis atque

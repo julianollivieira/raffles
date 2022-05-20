@@ -2,12 +2,11 @@ import type { NextPage } from "next";
 import Layout from "@/components/Layout";
 import { Box, Grid, MediaQuery, Paper } from "@mantine/core";
 import SneakerCard from "@/components/raffles/SneakerCard";
-import Link from "@/components/navigation/Link";
 import LinkButton from "@/components/navigation/LinkButton";
 
 const Raffles: NextPage = () => {
   return (
-    <Layout>
+    <Layout requireAuthenticated>
       <Box sx={{ display: "flex", gap: 24 }} py="xl">
         <MediaQuery smallerThan="sm" styles={{ display: "none" }}>
           <Paper

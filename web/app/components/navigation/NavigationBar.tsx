@@ -17,15 +17,17 @@ import Logo from "@/components/Logo";
 import ColorSchemeToggle from "@/components/input/ColorSchemeToggle";
 import { useAuth } from "@/context/authContext";
 import { Logout, Settings, User, UserCircle } from "tabler-icons-react";
+import { useRouter } from "next/router";
 
 const NavigationBar = (): ReactElement => {
   const { colorScheme } = useMantineColorScheme();
   const dark = colorScheme === "dark";
+  const router = useRouter();
 
   const [opened, setOpened] = useState(false);
   const title = opened ? "Close navigation" : "Open navigation";
 
-  const { user } = useAuth();
+  const { user, logOut } = useAuth();
 
   return (
     <Paper component="nav" shadow="xs">
@@ -99,7 +101,16 @@ const NavigationBar = (): ReactElement => {
               >
                 <Menu.Item icon={<Settings size={14} />}>Account</Menu.Item>
                 <Divider />
-                <Menu.Item color="red" icon={<Logout size={14} />}>
+                <Menu.Item
+                  color="red"
+                  icon={<Logout size={14} />}
+                  onClick={() => {
+                    router.push("/log-in");
+                    logOut().catch((e) => {
+                      console.error("😭", e);
+                    });
+                  }}
+                >
                   Log out
                 </Menu.Item>
               </Menu>

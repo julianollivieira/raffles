@@ -16,10 +16,12 @@ import { useFormik } from "formik";
 import { signupValidationSchema } from "@/utils/validationSchemas";
 import { useState } from "react";
 import { useAuth } from "@/context/authContext";
+import { useRouter } from "next/router";
 
 const SignUp: NextPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { signUp } = useAuth();
+  const router = useRouter();
 
   const formik = useFormik({
     initialValues: {
@@ -38,15 +40,16 @@ const SignUp: NextPage = () => {
           values.password,
           values.termsConditionsAndPolicy
         );
+        router.push("/log-in");
       } catch (e) {
-        console.error(e);
+        console.error("😭", e);
       }
       setIsLoading(false);
     },
   });
 
   return (
-    <Layout hideNav hideFooter>
+    <Layout hideNav hideFooter requireUnauthenticated>
       <Box
         sx={(theme) => ({
           display: "flex",

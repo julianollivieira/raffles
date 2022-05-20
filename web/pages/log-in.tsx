@@ -16,10 +16,12 @@ import { useFormik } from "formik";
 import { loginValidationSchema } from "@/utils/validationSchemas";
 import { useState } from "react";
 import { useAuth } from "@/context/authContext";
+import { useRouter } from "next/router";
 
 const LogIn: NextPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { logIn } = useAuth();
+  const router = useRouter();
 
   const formik = useFormik({
     initialValues: {
@@ -31,15 +33,16 @@ const LogIn: NextPage = () => {
       setIsLoading(true);
       try {
         await logIn(values.email, values.password);
+        router.push("/raffles");
       } catch (e) {
-        console.error(e);
+        console.error("😭", e);
       }
       setIsLoading(false);
     },
   });
 
   return (
-    <Layout hideNav hideFooter>
+    <Layout hideNav hideFooter requireUnauthenticated>
       <Box
         sx={(theme) => ({
           display: "flex",
