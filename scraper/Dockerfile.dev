@@ -1,0 +1,14 @@
+FROM python:3.10.4-buster
+WORKDIR /home/scraper
+
+# Install some required packages
+RUN apt-get update
+RUN apt-get -y install curl git
+
+# Install Node.js and Nodemon
+RUN curl -sL https://deb.nodesource.com/setup_17.x  | bash -
+RUN apt-get -y install nodejs
+RUN npm install --global nodemon
+
+# Run the scraper
+CMD ["nodemon", "--exec", "python3", "main.py"]

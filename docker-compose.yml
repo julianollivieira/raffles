@@ -21,6 +21,13 @@ services:
     ports:
       - ${APP_PORT}:${APP_PORT}
 
+  scraper:
+    build:
+      context: scraper
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./scraper:/home/scraper
+
   db:
     image: postgres:14.2-alpine3.15
     environment:
