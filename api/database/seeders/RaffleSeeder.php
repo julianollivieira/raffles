@@ -18,10 +18,7 @@ class RaffleSeeder extends Seeder
      */
     public function run()
     {
-        $naked = Store::where('name', 'NAKED')->first();
-        $afew = Store::where('name', 'AFEW')->first();
-        $stress = Store::where('name', 'STRESS95')->first();
-        $titolo = Store::where('name', 'TITOLO')->first();
+        $end = Store::where('name', 'END.')->first();
 
         $zebra = Sneaker::where('name', 'Zebra')->first();
         $waveRunner = Sneaker::where('name', 'Wave Runner')->first();
@@ -29,19 +26,19 @@ class RaffleSeeder extends Seeder
         $offWhiteSail = Sneaker::where('name', 'Off-White Sail')->first();
 
         $raffles = [[
-            'store_id' => $naked->id,
+            'store_id' => $end->id,
             'sneaker_id' => $zebra->id,
             'closes_on' => Carbon::now()->addWeeks(1),
         ], [
-            'store_id' => $afew->id,
+            'store_id' => $end->id,
             'sneaker_id' => $waveRunner->id,
             'closes_on' => Carbon::now()->addWeeks(1),
         ], [
-            'store_id' => $stress->id,
+            'store_id' => $end->id,
             'sneaker_id' => $unionGuavaIce->id,
             'closes_on' => Carbon::now()->addWeeks(1),
         ], [
-            'store_id' => $titolo->id,
+            'store_id' => $end->id,
             'sneaker_id' => $offWhiteSail->id,
             'closes_on' => Carbon::now()->addWeeks(1),
         ]];

@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('stores', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('name');
+            $table->string('raffles_url');
+            $table->string('code');
             $table->timestamps();
         });
     }

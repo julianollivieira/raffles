@@ -16,14 +16,15 @@ class StoreSeeder extends Seeder
     public function run()
     {
         $stores = [
-            'NAKED',
-            'AFEW',
-            'STRESS95',
-            'TITOLO',
+            [
+                'name' => 'END.',
+                'raffles_url' => 'https://launches.endclothing.com/',
+                'code' => 'end_clothing'
+            ]
         ];
 
-        foreach($stores as $store) {
-            Store::create(['name' => $store]);
+        foreach ($stores as $store) {
+            Store::create($store);
         }
     }
 }
