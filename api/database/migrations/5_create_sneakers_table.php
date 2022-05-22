@@ -16,16 +16,11 @@ return new class extends Migration
         Schema::create('sneakers', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('sku');
-            $table->uuid('brand_id');
-            $table->uuid('model_id');
+            $table->string('brand');
             $table->string('name');
-            $table->uuid('colorway_id');
-            $table->decimal('retail_price', 8, 2);
+            $table->string('colorway');
+            $table->string('price');
             $table->timestamps();
-
-            $table->foreign('brand_id')->references('id')->on('brands');
-            $table->foreign('model_id')->references('id')->on('models');
-            $table->foreign('colorway_id')->references('id')->on('colorways');
         });
     }
 
@@ -36,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sneakers');
+        Schema::dropIfExists('raffles');
     }
 };

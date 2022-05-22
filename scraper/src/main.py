@@ -33,4 +33,8 @@ for index, thread in enumerate(threads):
     thread.join()
     logging.info("Thread %d done", index)
 
-pprint(results)
+# pprint(results)
+
+# Request to StockX? (https://stockx.com/api/browse/new-arrivals?page=1&perPage=100)
+database.saveRaffles(results)
+# Insert into database?

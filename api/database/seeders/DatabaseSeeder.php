@@ -18,11 +18,6 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UserSeeder::class,
             StoreSeeder::class,
-            BrandSeeder::class,
-            ColorwaySeeder::class,
-            ModelSeeder::class,
-            SneakerSeeder::class,
-            RaffleSeeder::class
         ]);
     }
 }

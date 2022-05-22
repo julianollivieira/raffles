@@ -13,10 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('models', function (Blueprint $table) {
+        Schema::create('raffles', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('name');
+            $table->uuid('store_id');
+            $table->string('sneaker_id');
+            $table->string('url');
+            $table->timestamp('closes_on');
             $table->timestamps();
+
+            $table->foreign('store_id')->references('id')->on('stores');
+            $table->foreign('sneaker_id')->references('id')->on('sneakers');
         });
     }
 
@@ -27,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('models');
+        Schema::dropIfExists('raffles');
     }
 };
