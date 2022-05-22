@@ -28,18 +28,22 @@ class RaffleSeeder extends Seeder
         $raffles = [[
             'store_id' => $end->id,
             'sneaker_id' => $zebra->id,
+            'url' => 'www.google.com',
             'closes_on' => Carbon::now()->addWeeks(1),
         ], [
             'store_id' => $end->id,
             'sneaker_id' => $waveRunner->id,
+            'url' => 'www.google.com',
             'closes_on' => Carbon::now()->addWeeks(1),
         ], [
             'store_id' => $end->id,
             'sneaker_id' => $unionGuavaIce->id,
+            'url' => 'www.google.com',
             'closes_on' => Carbon::now()->addWeeks(1),
         ], [
             'store_id' => $end->id,
             'sneaker_id' => $offWhiteSail->id,
+            'url' => 'www.google.com',
             'closes_on' => Carbon::now()->addWeeks(1),
         ]];
 

@@ -1,5 +1,5 @@
 FROM python:3.10.4-buster
-WORKDIR /home/scraper
+WORKDIR /home/scraper/src
 
 # Install some required packages
 RUN apt-get update
@@ -9,6 +9,9 @@ RUN apt-get -y install curl git
 RUN curl -sL https://deb.nodesource.com/setup_17.x  | bash -
 RUN apt-get -y install nodejs
 RUN npm install --global nodemon
+
+# Install Python dependencies
+RUN pip install psycopg2 beautifulsoup4 requests
 
 # Run the scraper
 CMD ["nodemon", "--exec", "python3", "main.py"]

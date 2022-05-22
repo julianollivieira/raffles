@@ -1,11 +1,13 @@
 {
     "recommendations": [
+        // Web
         "esbenp.prettier-vscode",
         "dbaeumer.vscode-eslint",
-        "matklad.rust-analyzer",
-        "tamasfe.even-better-toml",
-        "serayuzgur.crates",
+        // API
+        "bmewburn.vscode-intelephense-client",
+        // Scraper
+        "ms-python.python",
+        // Misc
         "IronGeek.vscode-env",
-        "ms-python.python"
     ]
 }

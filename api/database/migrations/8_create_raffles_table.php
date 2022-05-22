@@ -17,6 +17,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->uuid('store_id');
             $table->uuid('sneaker_id');
+            $table->string('url');
             $table->timestamp('closes_on');
             $table->timestamps();
 

@@ -4,13 +4,10 @@
         "web/next-env.d.ts": true,
         "web/.next": true,
         "api/vendor": true,
+        "*/**/__pycache__": true
     },
     "[typescript][typescriptreact][html]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode",
-        "editor.formatOnSave": true
-    },
-    "[rust]": {
-        "editor.defaultFormatter": "matklad.rust-analyzer",
         "editor.formatOnSave": true
     },
 }
